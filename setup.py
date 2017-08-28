@@ -4,10 +4,10 @@ from os import path
 
 setup(
     name='l10n_ar_api',
-    version='1.0.1',
+    version='1.0.2',
     description='Libreria para localizacion Argentina',
     long_description='Libreria para localizacion Argentina',
-    url='https://github.com/lbaldi/l10n_ar_api',
+    url='https://github.com/odoo-arg/l10n_ar_api',
     author='OPENPYME SRL',
     author_email='dcrocco@openpyme.com.ar',
     license='',
