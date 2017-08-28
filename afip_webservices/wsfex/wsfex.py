@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # Segun manual para el desarrollador version 30/09/2014
-from odoo_openpyme_api.afip_webservices import config
+from l10n_ar_api.afip_webservices import config
 from zeep import Client
 from invoice import ExportationElectronicInvoiceValidator
 

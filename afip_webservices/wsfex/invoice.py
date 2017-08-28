@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from odoo_openpyme_api.documents import invoice
+from l10n_ar_api.documents import invoice
 
 class ExportationElectronicInvoiceValidator:
         

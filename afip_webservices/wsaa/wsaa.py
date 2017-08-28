@@ -1,5 +1,5 @@
 from zeep import Client
-from odoo_openpyme_api.afip_webservices import config
+from l10n_ar_api.afip_webservices import config
 
 
 class Wsaa(object):

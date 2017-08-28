@@ -4,7 +4,7 @@ import sys, os
 from datetime import date
 from dateutil.relativedelta import relativedelta
 sys.path.append(os.path.realpath(os.path.dirname(__file__)+"/.."))
-from odoo_openpyme_api import documents
+from l10n_ar_api import documents
 import wsfe
 
 class TestElectctronicInvoice:
