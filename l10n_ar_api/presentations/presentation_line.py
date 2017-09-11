@@ -20,7 +20,12 @@ class PresentationLine(object):
             if line_name == "comprasAlicuotas": return PurchaseSalesPresentationComprasAlicuotasLine()
             if line_name == "comprasImportaciones": return PurchaseSalesPresentationComprasImportacionesLine()
             if line_name == "creditoFiscalImportacionServ": return PurchaseSalesPresentationCreditoFiscalImportacionServLine()
-        
+
+        if presentation == "sifere":
+
+            if line_name == "retenciones": return SifereRetentionLine()
+            if line_name == "percepciones": return SiferePerceptionLine()
+
         assert 0, "No existe la presentacion: "+presentation+", o el tipo: "+line_name
         
     def _fill_and_validate_len(self, attribute, variable, length, numeric=True):
@@ -1072,3 +1077,128 @@ class PurchaseSalesPresentationCreditoFiscalImportacionServLine(PresentationLine
     @cuitEntidadPago.setter
     def cuitEntidadPago(self, cuitEntidadPago):        
         self._cuitEntidadPago = self._fill_and_validate_len(cuitEntidadPago, 'cuitEntidadPago', 11)
+
+
+class SifereLine(PresentationLine):
+    __slots__ = ['_jurisdiccion', '_cuit', '_fecha',
+                 '_puntoDeVenta', '_tipo', '_letra',
+                 '_importe']
+
+    def __init__(self):
+        self._jurisdiccion = None
+        self._cuit = None
+        self._fecha = None
+        self._puntoDeVenta = None
+        self._tipo = None
+        self._letra = None
+        self._importe = None
+
+    @property
+    def jurisdiccion(self):
+        return self._jurisdiccion
+
+    @jurisdiccion.setter
+    def jurisdiccion(self, jurisdiccion):
+        self._jurisdiccion = self._fill_and_validate_len(jurisdiccion, 'jurisdiccion', 3)
+
+    @property
+    def cuit(self):
+        return self._cuit
+
+    @cuit.setter
+    def cuit(self, cuit):
+        self._cuit = self._fill_and_validate_len(cuit, 'cuit', 13)
+        
+    @property
+    def fecha(self):
+        return self._fecha
+
+    @fecha.setter
+    def fecha(self, fecha):
+        self._fecha = self._fill_and_validate_len(fecha, 'fecha', 10)
+
+    @property
+    def puntoDeVenta(self):
+        return self._puntoDeVenta
+
+    @puntoDeVenta.setter
+    def puntoDeVenta(self, puntoDeVenta):
+        self._puntoDeVenta = self._fill_and_validate_len(puntoDeVenta, 'puntoDeVenta', 4)
+
+    @property
+    def tipo(self):
+        return self._tipo
+
+    @tipo.setter
+    def tipo(self, tipo):
+        self._tipo = self._fill_and_validate_len(tipo, 'tipo', 1)
+    
+    @property
+    def letra(self):
+        return self._letra
+
+    @letra.setter
+    def letra(self, letra):
+        self._letra = self._fill_and_validate_len(letra, 'letra', 1)
+    
+    @property
+    def importe(self):
+        return self._importe
+
+    @importe.setter
+    def importe(self, importe):
+        self._importe = self._fill_and_validate_len(importe, 'importe', 11)
+
+
+class SifereRetentionLine(SifereLine):
+    __slots__ = ['_numeroBase', '_numeroComprobante']
+
+    def __init__(self):
+        super(SifereRetentionLine, self).__init__()
+        self._numeroBase = None
+        self._numeroComprobante = None
+        
+    @property
+    def numeroBase(self):
+        return self._numeroBase
+
+    @numeroBase.setter
+    def numeroBase(self, numeroBase):
+        self._numeroBase = self._fill_and_validate_len(numeroBase, 'numeroBase', 20)
+
+    @property
+    def numeroComprobante(self):
+        return self._numeroComprobante
+
+    @numeroComprobante.setter
+    def numeroComprobante(self, numeroComprobante):
+        self._numeroComprobante = self._fill_and_validate_len(numeroComprobante, 'numeroComprobante', 16)
+
+    def get_values(self):
+        values = [self._jurisdiccion, self._cuit, self._fecha, self._puntoDeVenta,
+                  self._numeroComprobante, self._tipo, self._letra, self._numeroBase,
+                  self._importe]
+
+        return values
+        
+
+class SiferePerceptionLine(SifereLine):
+    __slots__ = ['_numeroComprobante']
+    
+    def __init__(self):
+        super(SiferePerceptionLine, self).__init__()
+        self._numeroComprobante = None
+
+    @property
+    def numeroComprobante(self):
+        return self._numeroComprobante
+
+    @numeroComprobante.setter
+    def numeroComprobante(self, numeroComprobante):
+        self._numeroComprobante = self._fill_and_validate_len(numeroComprobante, 'numeroComprobante', 8)
+
+    def get_values(self):
+        values = [self._jurisdiccion, self._cuit, self._fecha, self._puntoDeVenta,
+        self._numeroComprobante, self._tipo, self._letra, self._importe]
+
+        return values

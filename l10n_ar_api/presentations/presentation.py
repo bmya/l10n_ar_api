@@ -23,7 +23,7 @@ class Presentation(object):
         :return: String con todas las lineas de esa lista
         '''
         
-        presentation_string = '\n'.join(line.get_line_string() for line in self.lines)
+        presentation_string = '\r\n'.join(line.get_line_string() for line in self.lines)
         return presentation_string
   
     def create_line(self):
