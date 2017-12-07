@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 # Segun RG 2485 – Proyecto FE v2.8 - 12/09/2016
-
+import sys
+sys.path.append("..")
 from zeep import Client
+from .. import config
 
-from error import AfipError
-from l10n_ar_api.afip_webservices import config
 
 class WsSrPadron(object):
     """
@@ -38,8 +38,5 @@ class WsSrPadron(object):
             cuitRepresentada=self.cuit,
             idPersona=vat
         )
-
-        if response.Errors:
-            raise AfipError.parse_error(response)
 
         return response

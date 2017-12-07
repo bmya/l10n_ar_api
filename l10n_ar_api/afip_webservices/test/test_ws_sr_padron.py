@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import pytest
-import sys, os
-sys.path.append(os.path.realpath(os.path.dirname(__file__) + "/.."))
+import sys
+sys.path.append("..")
 import ws_sr_padron
 import wsaa
 import files
@@ -20,8 +20,10 @@ class TestWsSrPadron:
         # Token
         token = wsaa.tokens.AccessToken()
         token.create_token_from_login(login_fault)
-        return ws_sr_padron.ws_sr_padron.WsSrPadron(token, '20311641531')
+        return ws_sr_padron.ws_sr_padron.WsSrPadron(token, '20362889406')
 
     def test_get_persona(self, ws_sr_padron_test):
-        response = ws_sr_padron_test.get_partner_data('30712097953')
-        assert response.getPersonaResponse.persona.idPersona == '30712097953'
+        #response = ws_sr_padron_test.get_partner_data('30712097953')
+        #1assert response.getPersonaResponse.persona.idPersona == '30712097953'
+        response = ws_sr_padron_test.get_partner_data(20000000516)
+        assert response.persona
