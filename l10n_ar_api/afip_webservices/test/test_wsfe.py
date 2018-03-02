@@ -74,7 +74,7 @@ class TestWsfe:
 
     def test_invoice_invalid_tribute(self, wsfe_test, invoice_test):
         invoice_test.add_iva(documents.tax.Iva(5, 2100, 10000))
-        invoice_test.add_tribute(documents.tax.Tribute(6, 500, 1000, 5))
+        invoice_test.add_tribute(documents.tax.Tribute(76, 500, 1000, 5))
         response = wsfe_test.get_cae([invoice_test], 0001)
         assert response.FeCabResp.Resultado == 'R'
 

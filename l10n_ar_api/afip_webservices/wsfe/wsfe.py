@@ -33,7 +33,7 @@ class WsfeInvoiceDetails(object):
         
     def _set_details(self):
         """ Completa los detalles a enviar segun los datos del documento """
-        
+
         self.detail = self._get_detail()
         self.detail.Concepto = self.invoice.concept
         self.detail.DocTipo = self.invoice.customer_document_type
@@ -173,7 +173,7 @@ class Wsfe(object):
         # FECompUltimoAutorizado(Auth: ns0:FEAuthRequest, PtoVta: xsd:int, CbteTipo: xsd:int) ->
         # FECompUltimoAutorizadoResult: ns0:FERecuperaLastCbteResponse
 
-        last_number_response = Client(self.url).service.FECompUltimoAutorizado(
+        last_number_response = Client(self.url, strict=False).service.FECompUltimoAutorizado(
             Auth=self.auth_request,
             PtoVta=pos_number,
             CbteTipo=document_type_number,
